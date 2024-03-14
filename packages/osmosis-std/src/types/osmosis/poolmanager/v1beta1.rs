@@ -12,14 +12,7 @@ use osmosis_std_derive::CosmwasmExt;
 )]
 #[proto_message(type_url = "/osmosis.poolmanager.v1beta1.SwapAmountInRoute")]
 pub struct SwapAmountInRoute {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub token_out_denom: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -35,14 +28,7 @@ pub struct SwapAmountInRoute {
 )]
 #[proto_message(type_url = "/osmosis.poolmanager.v1beta1.SwapAmountOutRoute")]
 pub struct SwapAmountOutRoute {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub token_in_denom: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -186,19 +172,11 @@ pub struct Params {
 )]
 #[proto_message(type_url = "/osmosis.poolmanager.v1beta1.GenesisState")]
 pub struct GenesisState {
-    /// the next_pool_id
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "next_poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub next_pool_id: u64,
     /// params is the container of poolmanager parameters.
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
     /// pool_routes is the container of the mappings from pool id to pool type.
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag = "2")]
     pub pool_routes: ::prost::alloc::vec::Vec<ModuleRoute>,
 }
 /// ===================== MsgSwapExactAmountIn
@@ -409,16 +387,9 @@ pub struct ParamsResponse {
     response_type = EstimateSwapExactAmountInResponse
 )]
 pub struct EstimateSwapExactAmountInRequest {
-    #[prost(uint64, tag = "2")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub token_in: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag = "3")]
     pub routes: ::prost::alloc::vec::Vec<SwapAmountInRoute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -440,16 +411,9 @@ pub struct EstimateSwapExactAmountInRequest {
     response_type = EstimateSwapExactAmountInResponse
 )]
 pub struct EstimateSinglePoolSwapExactAmountInRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub token_in: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub token_out_denom: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -486,16 +450,9 @@ pub struct EstimateSwapExactAmountInResponse {
     response_type = EstimateSwapExactAmountOutResponse
 )]
 pub struct EstimateSwapExactAmountOutRequest {
-    #[prost(uint64, tag = "2")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag = "2")]
     pub routes: ::prost::alloc::vec::Vec<SwapAmountOutRoute>,
-    #[prost(string, tag = "4")]
+    #[prost(string, tag = "3")]
     pub token_out: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -517,16 +474,9 @@ pub struct EstimateSwapExactAmountOutRequest {
     response_type = EstimateSwapExactAmountOutResponse
 )]
 pub struct EstimateSinglePoolSwapExactAmountOutRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub token_in_denom: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub token_out: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -678,16 +628,9 @@ pub struct AllPoolsResponse {
     response_type = SpotPriceResponse
 )]
 pub struct SpotPriceRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub base_asset_denom: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub quote_asset_denom: ::prost::alloc::string::String,
 }
 /// SpotPriceResponse defines the gRPC response structure for a SpotPrice
@@ -797,12 +740,10 @@ impl<'a, Q: cosmwasm_std::CustomQuery> PoolmanagerQuerier<'a, Q> {
     }
     pub fn estimate_swap_exact_amount_in(
         &self,
-        pool_id: u64,
         token_in: ::prost::alloc::string::String,
         routes: ::prost::alloc::vec::Vec<SwapAmountInRoute>,
     ) -> Result<EstimateSwapExactAmountInResponse, cosmwasm_std::StdError> {
         EstimateSwapExactAmountInRequest {
-            pool_id,
             token_in,
             routes,
         }
@@ -810,12 +751,10 @@ impl<'a, Q: cosmwasm_std::CustomQuery> PoolmanagerQuerier<'a, Q> {
     }
     pub fn estimate_single_pool_swap_exact_amount_in(
         &self,
-        pool_id: u64,
         token_in: ::prost::alloc::string::String,
         token_out_denom: ::prost::alloc::string::String,
     ) -> Result<EstimateSwapExactAmountInResponse, cosmwasm_std::StdError> {
         EstimateSinglePoolSwapExactAmountInRequest {
-            pool_id,
             token_in,
             token_out_denom,
         }
@@ -823,12 +762,10 @@ impl<'a, Q: cosmwasm_std::CustomQuery> PoolmanagerQuerier<'a, Q> {
     }
     pub fn estimate_swap_exact_amount_out(
         &self,
-        pool_id: u64,
         routes: ::prost::alloc::vec::Vec<SwapAmountOutRoute>,
         token_out: ::prost::alloc::string::String,
     ) -> Result<EstimateSwapExactAmountOutResponse, cosmwasm_std::StdError> {
         EstimateSwapExactAmountOutRequest {
-            pool_id,
             routes,
             token_out,
         }
@@ -836,12 +773,10 @@ impl<'a, Q: cosmwasm_std::CustomQuery> PoolmanagerQuerier<'a, Q> {
     }
     pub fn estimate_single_pool_swap_exact_amount_out(
         &self,
-        pool_id: u64,
         token_in_denom: ::prost::alloc::string::String,
         token_out: ::prost::alloc::string::String,
     ) -> Result<EstimateSwapExactAmountOutResponse, cosmwasm_std::StdError> {
         EstimateSinglePoolSwapExactAmountOutRequest {
-            pool_id,
             token_in_denom,
             token_out,
         }
@@ -858,12 +793,10 @@ impl<'a, Q: cosmwasm_std::CustomQuery> PoolmanagerQuerier<'a, Q> {
     }
     pub fn spot_price(
         &self,
-        pool_id: u64,
         base_asset_denom: ::prost::alloc::string::String,
         quote_asset_denom: ::prost::alloc::string::String,
     ) -> Result<SpotPriceResponse, cosmwasm_std::StdError> {
         SpotPriceRequest {
-            pool_id,
             base_asset_denom,
             quote_asset_denom,
         }
