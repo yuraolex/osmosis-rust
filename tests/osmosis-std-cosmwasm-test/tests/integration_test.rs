@@ -210,7 +210,6 @@ fn test_twap_query() {
                 .query(
                     &contract_addr,
                     &QueryMsg::QueryArithmeticTwapToNow(ArithmeticTwapToNowRequest {
-                        pool_id,
                         base_asset: "uosmo".to_string(),
                         quote_asset: "uion".to_string(),
                         start_time: Some(Timestamp {
@@ -230,7 +229,6 @@ fn test_twap_query() {
                 .query(
                     &contract_addr,
                     &QueryMsg::QueryGeometricTwapToNow(GeometricTwapToNowRequest {
-                        pool_id,
                         base_asset: "uosmo".to_string(),
                         quote_asset: "uion".to_string(),
                         start_time: Some(Timestamp {

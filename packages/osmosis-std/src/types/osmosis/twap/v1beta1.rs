@@ -119,20 +119,13 @@ pub struct GenesisState {
     response_type = ArithmeticTwapResponse
 )]
 pub struct ArithmeticTwapRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub base_asset: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub quote_asset: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "3")]
     pub start_time: ::core::option::Option<crate::shim::Timestamp>,
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag = "4")]
     pub end_time: ::core::option::Option<crate::shim::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -168,18 +161,11 @@ pub struct ArithmeticTwapResponse {
     response_type = ArithmeticTwapToNowResponse
 )]
 pub struct ArithmeticTwapToNowRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub base_asset: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub quote_asset: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "3")]
     pub start_time: ::core::option::Option<crate::shim::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -215,20 +201,13 @@ pub struct ArithmeticTwapToNowResponse {
     response_type = GeometricTwapResponse
 )]
 pub struct GeometricTwapRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub base_asset: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub quote_asset: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "3")]
     pub start_time: ::core::option::Option<crate::shim::Timestamp>,
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag = "4")]
     pub end_time: ::core::option::Option<crate::shim::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -264,18 +243,11 @@ pub struct GeometricTwapResponse {
     response_type = GeometricTwapToNowResponse
 )]
 pub struct GeometricTwapToNowRequest {
-    #[prost(uint64, tag = "1")]
-    #[serde(alias = "poolID")]
-    #[serde(
-        serialize_with = "crate::serde::as_str::serialize",
-        deserialize_with = "crate::serde::as_str::deserialize"
-    )]
-    pub pool_id: u64,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "1")]
     pub base_asset: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "2")]
     pub quote_asset: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "3")]
     pub start_time: ::core::option::Option<crate::shim::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -339,14 +311,12 @@ impl<'a, Q: cosmwasm_std::CustomQuery> TwapQuerier<'a, Q> {
     }
     pub fn arithmetic_twap(
         &self,
-        pool_id: u64,
         base_asset: ::prost::alloc::string::String,
         quote_asset: ::prost::alloc::string::String,
         start_time: ::core::option::Option<crate::shim::Timestamp>,
         end_time: ::core::option::Option<crate::shim::Timestamp>,
     ) -> Result<ArithmeticTwapResponse, cosmwasm_std::StdError> {
         ArithmeticTwapRequest {
-            pool_id,
             base_asset,
             quote_asset,
             start_time,
@@ -356,13 +326,11 @@ impl<'a, Q: cosmwasm_std::CustomQuery> TwapQuerier<'a, Q> {
     }
     pub fn arithmetic_twap_to_now(
         &self,
-        pool_id: u64,
         base_asset: ::prost::alloc::string::String,
         quote_asset: ::prost::alloc::string::String,
         start_time: ::core::option::Option<crate::shim::Timestamp>,
     ) -> Result<ArithmeticTwapToNowResponse, cosmwasm_std::StdError> {
         ArithmeticTwapToNowRequest {
-            pool_id,
             base_asset,
             quote_asset,
             start_time,
@@ -371,14 +339,12 @@ impl<'a, Q: cosmwasm_std::CustomQuery> TwapQuerier<'a, Q> {
     }
     pub fn geometric_twap(
         &self,
-        pool_id: u64,
         base_asset: ::prost::alloc::string::String,
         quote_asset: ::prost::alloc::string::String,
         start_time: ::core::option::Option<crate::shim::Timestamp>,
         end_time: ::core::option::Option<crate::shim::Timestamp>,
     ) -> Result<GeometricTwapResponse, cosmwasm_std::StdError> {
         GeometricTwapRequest {
-            pool_id,
             base_asset,
             quote_asset,
             start_time,
@@ -388,13 +354,11 @@ impl<'a, Q: cosmwasm_std::CustomQuery> TwapQuerier<'a, Q> {
     }
     pub fn geometric_twap_to_now(
         &self,
-        pool_id: u64,
         base_asset: ::prost::alloc::string::String,
         quote_asset: ::prost::alloc::string::String,
         start_time: ::core::option::Option<crate::shim::Timestamp>,
     ) -> Result<GeometricTwapToNowResponse, cosmwasm_std::StdError> {
         GeometricTwapToNowRequest {
-            pool_id,
             base_asset,
             quote_asset,
             start_time,
