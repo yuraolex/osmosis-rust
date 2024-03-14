@@ -180,14 +180,12 @@ fn test_twap_query() {
     with_env_setup(
         |app, wasm, signer, _code_id, contract_addr| {
             let pools = helpers::setup_pools(app, &signer);
-            let pool_id = pools[0];
 
             let swap = || {
                 app.execute::<_, MsgSwapExactAmountInResponse>(
                     gamm::v1beta1::MsgSwapExactAmountIn {
                         sender: signer.address(),
                         routes: vec![SwapAmountInRoute {
-                            pool_id,
                             token_out_denom: "uion".to_string(),
                         }],
                         token_in: Some(Coin::new(30, "uosmo").into()),
